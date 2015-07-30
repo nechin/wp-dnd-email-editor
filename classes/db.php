@@ -58,7 +58,8 @@ class DNDEE_DB {
      */
     public function gt($name) {
         $table_names = array(
-            'mail_templates' => self::get_prefix() . 'mail_templates'
+            'items' => self::get_prefix() . 'dndee_items',
+            'templates' => self::get_prefix() . 'dndee_templates',
         );
 
         if (isset($table_names)) {
@@ -75,21 +76,30 @@ class DNDEE_DB {
      */
     public function get_tables() {
         $tables = array(
-            self::gt('mail_templates') => "
-            CREATE TABLE IF NOT EXISTS " . self::gt('mail_templates') . " (
-                id INT(11) NOT NULL AUTO_INCREMENT,
-                name varchar(255) DEFAULT NULL,
-                comment varchar(255) DEFAULT NULL,
-                subject varchar(255) DEFAULT NULL,
-                title varchar(255) DEFAULT NULL,
-                message TEXT NOT NULL,
-                active SMALLINT(1) NOT NULL DEFAULT 1,
-                `order` INT(11) NOT NULL,
-                PRIMARY KEY  (id)
-            )
-            ENGINE = INNODB
-            CHARACTER SET utf8
-            COLLATE utf8_general_ci;"
+            self::gt('items') => "
+                CREATE TABLE IF NOT EXISTS " . self::gt('items') . " (
+                    id INT(11) NOT NULL AUTO_INCREMENT,
+                    name varchar(255) DEFAULT NULL,
+                    title varchar(255) DEFAULT NULL,
+                    message TEXT NOT NULL,
+                    active SMALLINT(1) NOT NULL DEFAULT 1,
+                    PRIMARY KEY  (id)
+                )
+                ENGINE = INNODB
+                CHARACTER SET utf8
+                COLLATE utf8_general_ci;",
+            self::gt('templates') => "
+                CREATE TABLE IF NOT EXISTS " . self::gt('templates') . " (
+                    id INT(11) NOT NULL AUTO_INCREMENT,
+                    name varchar(255) DEFAULT NULL,
+                    title varchar(255) DEFAULT NULL,
+                    template TEXT NOT NULL,
+                    active SMALLINT(1) NOT NULL DEFAULT 1,
+                    PRIMARY KEY  (id)
+                )
+                ENGINE = INNODB
+                CHARACTER SET utf8
+                COLLATE utf8_general_ci;"
         );
 
         return $tables;
