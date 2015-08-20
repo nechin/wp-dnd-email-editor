@@ -58,7 +58,7 @@ class DNDEE_DB {
      */
     public function gt($name) {
         $table_names = array(
-            'items' => self::get_prefix() . 'dndee_items',
+            'settings' => self::get_prefix() . 'dndee_settings',
             'templates' => self::get_prefix() . 'dndee_templates',
         );
 
@@ -76,13 +76,10 @@ class DNDEE_DB {
      */
     public function get_tables() {
         $tables = array(
-            self::gt('items') => "
-                CREATE TABLE IF NOT EXISTS " . self::gt('items') . " (
+            self::gt('settings') => "
+                CREATE TABLE IF NOT EXISTS " . self::gt('settings') . " (
                     id INT(11) NOT NULL AUTO_INCREMENT,
-                    name varchar(255) DEFAULT NULL,
-                    title varchar(255) DEFAULT NULL,
-                    message TEXT NOT NULL,
-                    active SMALLINT(1) NOT NULL DEFAULT 1,
+                    data TEXT NOT NULL,
                     PRIMARY KEY  (id)
                 )
                 ENGINE = INNODB
@@ -92,9 +89,8 @@ class DNDEE_DB {
                 CREATE TABLE IF NOT EXISTS " . self::gt('templates') . " (
                     id INT(11) NOT NULL AUTO_INCREMENT,
                     name varchar(255) DEFAULT NULL,
-                    title varchar(255) DEFAULT NULL,
                     template TEXT NOT NULL,
-                    active SMALLINT(1) NOT NULL DEFAULT 1,
+                    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                     PRIMARY KEY  (id)
                 )
                 ENGINE = INNODB
