@@ -1,0 +1,11 @@
+.main-area {
+    border: 1px solid #a9a9a9;
+    width: 100%;
+    height: 500px;
+}
+
+.action-area {
+    border: 1px solid #a9a9a9;
+    width: 400px;
+    height: 500px;
+}

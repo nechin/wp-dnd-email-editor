@@ -50,6 +50,8 @@ class DNDEE_Editor extends DNDEE_DB {
      * Render editor page
      */
     public function render() {
+        wp_enqueue_style('dndee-editor', DNDEE_URL . '/assets/css/editor.css');
+
         echo $this->get_editor_template_content();
     }
 

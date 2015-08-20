@@ -26,9 +26,6 @@ class DNDEE_Init {
      * Constructor
      */
     function __construct() {
-        // Define constants
-        $this->define_constants();
-
         // Autoload
         spl_autoload_register(array($this, 'autoload'));
 
@@ -55,15 +52,6 @@ class DNDEE_Init {
         }
 
         return;
-    }
-
-    /**
-     * Define constants
-     */
-    private function define_constants() {
-        define('DNDEE_PATH', __FILE__);
-        define('DNDEE_DIR', dirname(DNDEE_PATH));
-        define('DNDEE_URL', plugin_dir_url(DNDEE_PATH));
     }
 
     /**
