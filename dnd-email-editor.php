@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drag'n'Drop Email Editor
  * Description: The visual editor for creating emails
- * Version: 0.0.4
+ * Version: 0.0.5
  * Author: Alexander Vitkalov
  * Author URI: http://explit.ru
  */
@@ -16,6 +16,6 @@ define('DNDEE_DIR', dirname(DNDEE_PATH));
 define('DNDEE_URL', plugin_dir_url(DNDEE_PATH));
 
 //Load the plugin
-require dirname(__FILE__) . '/classes/init.php';
+require DNDEE_DIR . '/classes/init.php';
 $dndee = new DNDEE_Init();
 $dndee->init();

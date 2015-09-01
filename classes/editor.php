@@ -55,6 +55,25 @@ class DNDEE_Editor extends DNDEE_DB {
         echo $this->get_editor_template_content();
     }
 
+    public function render_elements() {
+        require_once(DNDEE_DIR . '/elements/base/element.php');
+
+        foreach (glob(DNDEE_DIR . '/elements/*.php') as $file_name) {
+
+            if ($file_name && strpos($file_name, '.php') !== false) {
+                $file_name = str_replace(DNDEE_DIR . '/elements/', '', $file_name);
+                $class_file = DNDEE_DIR . '/elements/' . $file_name;
+                $class_name = 'DNDEE_' . ucfirst(str_replace('.php', '', $file_name));
+
+                if (is_readable($class_file)) {
+                    require_once($class_file);
+                    $element = new $class_name();
+                    $element->render();
+                }
+            }
+        }
+    }
+
     /**
      * Menu item
      */
