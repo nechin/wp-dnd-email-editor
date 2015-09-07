@@ -50,8 +50,6 @@ class DNDEE_Editor extends DNDEE_DB {
      * Render editor page
      */
     public function render() {
-        wp_enqueue_style('dndee-editor', DNDEE_URL . '/assets/css/editor.css');
-
         echo $this->get_editor_template_content();
     }
 
@@ -68,6 +66,7 @@ class DNDEE_Editor extends DNDEE_DB {
                 if (is_readable($class_file)) {
                     require_once($class_file);
                     $element = new $class_name();
+                    $element->enqueue_script();
                     $element->render();
                 }
             }
@@ -78,7 +77,7 @@ class DNDEE_Editor extends DNDEE_DB {
      * Menu item
      */
     public function admin_menu() {
-        add_management_page(
+        $page = add_management_page(
             'Email Editor',
             'Email Editor',
             'manage_options',
@@ -88,6 +87,18 @@ class DNDEE_Editor extends DNDEE_DB {
                 'render'
             )
         );
+
+        add_action('admin_print_scripts-' . $page, array($this, 'editor_admin_scripts'));
+    }
+
+    function editor_admin_scripts() {
+        wp_register_style('dndee-editor', DNDEE_URL . 'assets/css/editor.css');
+        wp_enqueue_style('dndee-editor');
+
+        wp_enqueue_script('jquery-ui-draggable');
+
+        wp_register_script('dndee-editor', DNDEE_URL . 'assets/js/editor.js');
+        wp_enqueue_script('dndee-editor');
     }
 
 }

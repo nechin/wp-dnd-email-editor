@@ -6,7 +6,9 @@
             </div>
         </td>
         <td width="400px">
-            <div class="action-area"><?php $this->render_elements() ?></div>
+            <div class="action-area">
+                <?php $this->render_elements() ?>
+            </div>
         </td>
     </tr>
 </table>
