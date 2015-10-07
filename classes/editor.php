@@ -53,15 +53,19 @@ class DNDEE_Editor extends DNDEE_DB {
         echo $this->get_editor_template_content();
     }
 
+    /**
+     * Вывод элементов
+     */
     public function render_elements() {
         require_once(DNDEE_DIR . '/elements/base/element.php');
+        $elements = require_once(DNDEE_DIR . '/elements/_config.php');
 
-        foreach (glob(DNDEE_DIR . '/elements/*.php') as $file_name) {
+        foreach ($elements as $element) {
 
-            if ($file_name && strpos($file_name, '.php') !== false) {
-                $file_name = str_replace(DNDEE_DIR . '/elements/', '', $file_name);
+            if (isset($element['filename']) && isset($element['classname'])) {
+                $file_name = $element['filename'];
                 $class_file = DNDEE_DIR . '/elements/' . $file_name;
-                $class_name = 'DNDEE_' . ucfirst(str_replace('.php', '', $file_name));
+                $class_name = $element['classname'];
 
                 if (is_readable($class_file)) {
                     require_once($class_file);
@@ -91,6 +95,9 @@ class DNDEE_Editor extends DNDEE_DB {
         add_action('admin_print_scripts-' . $page, array($this, 'editor_admin_scripts'));
     }
 
+    /**
+     * Скрипты редактора
+     */
     function editor_admin_scripts() {
         wp_register_style('dndee-editor', DNDEE_URL . 'assets/css/editor.css');
         wp_enqueue_style('dndee-editor');

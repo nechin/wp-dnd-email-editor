@@ -2,15 +2,14 @@
 /**
  * Created by Alexander Vitkalov.
  * User: Alexander Vitkalov
- * Date: 02.09.2015
- * Time: 0:06
+ * Date: 07.10.2015
+ * Time: 23:07
  */
-
 /**
- * Button element
- * Class DNDEE_Button
+ * Table element
+ * Class DNDEE_Table
  */
-class DNDEE_Button extends DNDEE_Element {
+class DNDEE_Table extends DNDEE_Element {
 
     function __construct() {
 
@@ -22,8 +21,8 @@ class DNDEE_Button extends DNDEE_Element {
      * @return mixed|void
      */
     public function render() {
-        echo '<div class="element-wrapper-button">
-<div class="dndee-button" style="
+        echo '<div class="element-wrapper-table">
+<div class="dndee-table" style="
 background: #3498db;
 border-radius: 4px;
 color: #ffffff;
@@ -32,7 +31,7 @@ padding: 10px;
 text-decoration: none;
 text-align: center;
 width: 90px;
-">Button</div>
+">Table</div>
 </div>';
     }
 
@@ -42,10 +41,10 @@ width: 90px;
      * @return mixed|void
      */
     public function enqueue_script() {
-        wp_register_script('dndee-button-js', DNDEE_URL . 'elements/assets/js/button.js');
-        wp_enqueue_script('dndee-button-js');
-        wp_register_style('dndee-button-css', DNDEE_URL . 'elements/assets/css/button.css');
-        wp_enqueue_style('dndee-button-css');
+        wp_register_script('dndee-table-js', DNDEE_URL . 'elements/assets/js/table.js');
+        wp_enqueue_script('dndee-table-js');
+        wp_register_style('dndee-table-css', DNDEE_URL . 'elements/assets/css/table.css');
+        wp_enqueue_style('dndee-table-css');
     }
 
 }
